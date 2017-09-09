@@ -27,6 +27,7 @@
     "concurrently": "=3.4.0",
     "cpx": "=1.5.0",
     "css-loader": "=0.27.3",
+    "del-cli": "=1.1.0",
     "enzyme": "=2.9.1",
     "eslint": "=3.19.0",
     "eslint-config-airbnb": "=14.1.0",
@@ -56,6 +57,8 @@
     "serve": "=5.1.4",
     "storybook-readme": "=3.0.6",
     "style-loader": "=0.16.1",
+    "svg-to-react-cli": "=1.5.0",
+    "svgo": "=0.7.2",
     "ts-jest": "=20.0.6",
     "ts-loader": "=2.0.3",
     "tslint": "=5.6.0",
@@ -73,6 +76,7 @@
     "clean:build": "rimraf build/*",
     "copy:story-assets": "cpx \"src/stories/assets/**/*\" \"dist/stories/assets\"",
     "copy:readmes": "cpx \"src/components/**/README.md\" \"dist/components\"",
+    "copy:icon-jsx": "cpx \"src/components/Icon/icons/*.jsx\" \"dist/components/Icon/icons\"",
     "build:css:global": "postcss src/css/index.css --output dist/yamui-base.css",
     "build:css:components": "postcss \"src/components/**/*.css\" --dir \"dist/components\" --base \"src/components\"",
     "build:ts:components": "tsc --project .",
@@ -102,6 +106,13 @@
     "storybook:static:stop": "pkill -f \"sh -c serve docs --port 5555\"",
     "visual:test": "backstop test --config config/backstop/config.js",
     "visual:approve": "backstop approve --config config/backstop/config.js",
+    "svg:clean-build": "rimraf build/icons",
+    "svg:clean-components": "del 'src/components/Icon/icons/*.jsx'",
+    "svg:svgo": "svgo --folder=./assets/Icons/raw --output=./build/icons --config=./.svgo.yml",
+    "svg:react": "cd ./build/icons && svgtoreact dir --output ../../src/components/Icon/icons && cd -",
+    "svg:js-to-jsx": "rename src/components/Icon/icons/*.js \"{{f}}.jsx\"",
+    "Xsvg:file-headers": "TODO!!",
+    "svg": "run-s svg:*",
     "prepublishOnly": "yarn build"
   }
 }

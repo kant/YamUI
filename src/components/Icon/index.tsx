@@ -33,8 +33,6 @@ export interface IconProps extends BaseComponentProps {
 
 interface IconStyles {
   color?: string;
-  height: string;
-  width: string;
 }
 
 export default class Icon extends React.Component<IconProps, {}> {
@@ -43,8 +41,9 @@ export default class Icon extends React.Component<IconProps, {}> {
   };
 
   public render () {
+    const length = this.props.size + 'px';
     const CurrentIcon = ICONS[this.props.icon];
-    return <CurrentIcon className={this.getClasses()} style={this.getInlineStyles()} />;
+    return <CurrentIcon className={this.getClasses()} style={this.getInlineStyles()} height={length} width={length} />;
   }
 
   private getClasses () {
@@ -61,11 +60,7 @@ export default class Icon extends React.Component<IconProps, {}> {
   }
 
   private getInlineStyles () {
-    const length = this.props.size + 'px';
-    const styles: IconStyles = {
-      height: length,
-      width: length,
-    };
+    const styles: IconStyles = {};
     if (this.props.color) {
       styles.color = this.props.color;
     }
